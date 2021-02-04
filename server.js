@@ -9,9 +9,13 @@ const mongoose = require('mongoose')
 
 const methodOverride = require('method-override')
 const questions = require('./models/questions')
+const comp = require('./models/companies')
+const exp = require('./models/blog')
+
 
 const top= require('./models/topics')
 const topicquesRouter=require('./routes/topques')
+const experienceRouter=require('./routes/experience')
 const app = express()
 
 const PORT = process.env.PORT || 4040
@@ -29,12 +33,19 @@ app.get('/', async (req, res) => {
   res.render('topques/index', { topics: topics })
 })
 
+app.get('/exp', async (req, res) => {
+  const companies = await comp.find().sort({ createdAt: 'desc' })
+  res.render('experience/index', { companies : companies })
+})
+
+
   app.use('/topques', topicquesRouter)
+  app.use('/experience', experienceRouter)
 //admin bro
 
 AdminBro.registerAdapter(AdminBroMongoose)
   const AdminBroOptions = {
-    resources: [top,questions],
+    databases: [mongoose]
   }
   const adminBro = new AdminBro(AdminBroOptions)
   const router = AdminBroExpress.buildRouter(adminBro)
