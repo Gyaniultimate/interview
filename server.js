@@ -17,7 +17,7 @@ const methodOverride = require('method-override')
 const questions = require('./models/questions')
 const comp = require('./models/companies')
 const exp = require('./models/blog')
-
+const app = express()
  // middleware
  //app.use(express.static('public'));  //  assets and/or public
  app.use(express.json());
@@ -26,7 +26,7 @@ const exp = require('./models/blog')
 const top= require('./models/topics')
 const topicquesRouter=require('./routes/topques')
 const experienceRouter=require('./routes/experience')
-const app = express()
+
 app.use('/assets',express.static('assets'))
 
 const PORT = process.env.PORT || 4040
