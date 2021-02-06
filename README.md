@@ -18,4 +18,9 @@ This project aims to create a blog cum prepraration tracker website in react and
     "tslib": "^2.1.0"
   }
   
-  make sure you install these before running the project. mongodb should be installed.
+ 1 . git clone https://github.com/Gyaniultimate/interview 
+ 2. npm install
+ 3. node server.js
+ 
+ Make sure you have nodejs installed. See the project running at localserver:4040.
+ 
