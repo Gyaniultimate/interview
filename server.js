@@ -43,8 +43,8 @@ app.get('/exp', async (req, res) => {
 })
 
 
-  app.use('/topques', topicquesRouter)
-  app.use('/experience', experienceRouter)
+  app.use('/top/topques', topicquesRouter)
+  app.use('/exp/experience', experienceRouter)
 //admin bro
 
 AdminBro.registerAdapter(AdminBroMongoose)
