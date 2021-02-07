@@ -1,0 +1,71 @@
+<%- include('partials/header'); -%>
+
+
+
+  
+  <div class = "content">
+  <form action="/saveQuestion">
+  <h2>Add a Question</h2>
+  <label for="title">title</label>
+  <input type="text" name="title" required />
+  <div class="title error"></div>
+  <label for="topic" style="margin-top: 0.3cm;">Topic</label>
+  <select name="topic" id="topic" >
+    <% if (topics.length > 0) { %>
+      <% topics.forEach((topic) =>  { %>
+        <option value = "<%= topic.title %>"><%= topic.title %></option>
+      <% }) %>
+      <% } %>
+
+  </select>
+
+  <label for="url"  style="margin-top: 0.5cm;">Url</label>
+
+  <input type="text" name="url" required />
+  <div class="url error"></div>
+  <button class="button" style="margin-top: 0.7cm;">Save</button>
+  
+</form>
+</div>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector('form');
+  const titleError = document.querySelector('.title.error');
+  const urlError = document.querySelector('.url.error');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // reset errors
+    titleError.textContent = '';
+    urlError.textContent = '';
+
+    // get values
+    const title = form.title.value;
+    const url = form.url.value;
+    const topic = form.topic.value;
+    try {
+      const res = await fetch('/form', { 
+        method: 'POST', 
+        body: JSON.stringify({ title, topic, url}),
+        headers: {'Content-Type': 'application/json'}
+      });
+      console.log("aaaaaa      ");
+      const data = await res.json();
+      console.log("baaaaa      ");
+      console.log(data);
+      if (data.errors) {
+        titleError.textContent = data.errors.email;
+        urlError.textContent = data.errors.password;
+      }
+      if (data.question) {
+        res.render('/');
+
+      }
+    }
+    catch (err) {
+      console.log(err);
+    }
+  });
+</script>
