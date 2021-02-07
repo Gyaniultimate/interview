@@ -43,7 +43,7 @@ app.use(methodOverride('_method'))
 
  app.get('*',checkUser);
 
- app.get('/admin', reqAdminAuth);
+ app.get('/admin');
 
 app.get('/', async (req, res) => {
   
