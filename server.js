@@ -63,13 +63,13 @@ app.get('/exp', async (req, res) => {
 })
 app.get('/form',  authController.form_get);
 app.post('/form',authController.form_post);
-//app.get('/form_blog',  authController.form_blog_get);
-//app.post('/form_blog',authController.form_blog_post);
+app.get('/form_blog',  authController.form_blog_get);
+app.post('/form_blog',authController.form_blog_post);
 
 
   app.use('/topques', topicquesRouter)
   app.use('/experience', experienceRouter)
-  
+
 //admin bro
 
 AdminBro.registerAdapter(AdminBroMongoose)

@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 const Quest = require('../models/questions');
 //const Topics = require('../models/topics');
 const Topic = require("../models/topics");
-const company = require("../models/companies");
+const Company = require("../models/companies");
+const Blog = require("../models/blog");
 const { Query } = require("mongoose");
 const { isAdmin } = require('../middleware/authAdmin');
 
@@ -71,14 +72,13 @@ module.exports.form_get = async (req, res) => {
   res.render('forms', {topics : all_topics});
 }
 
-/*
 //form_blog get
 module.exports.form_blog_get = async (req, res) => {
   const filter = {};
-  const all_blogs = await company.find(filter);
-  res.render('forms_blog', {companies : all_topics});
+  const all_companies = await Company.find(filter);
+  res.render('forms_blog', {companies : all_companies});
 }
-*/
+
 
 //post
 
@@ -133,16 +133,15 @@ module.exports.form_post = async (req, res) => {
   }
 }
 
-/*
 // form_blog post
 module.exports.form_blog_post = async (req, res) => {
-  const {company,title,url, linkToCompany,createdAt } = req.body;
+  const {company,title,url, author,linkToCompany,createdAt } = req.body;
   const approved = isAdmin( req, res );
   var companyid;
-  await company.find({title : company}).then((result) => companyid = result[0]._id);
-  console.log("title : ", title, company, url,linkToCompany, approved);
+  await Company.find({title : company}).then((result) => companyid = result[0]._id);
+  console.log("title : ", title, company, url,author,linkToCompany, approved);
   try {
-    const quest = await Quest.create({company : companyid, title, url,linkToCompany : company,createdAt, approved});
+    const blogss = await Blog.create({company : companyid, title, url,author,linkToCompany : company,createdAt, approved});
     res.status(201).json({company : company._id});
   }
   catch(err) {
@@ -150,7 +149,7 @@ module.exports.form_blog_post = async (req, res) => {
     res.status(401).json({err});
   }
 }
-*/
+
 
 
 

@@ -1,11 +1,16 @@
 const mongoose = require('mongoose')
 
 
-
+const Topic = require("../models/topics");
 
 
 
 const questionSchema = new mongoose.Schema({
+    topic :{
+    type : mongoose.Schema.Types.ObjectId, 
+    ref : 'Topic',
+    required : true
+    },
     title: {
       type: String,
       required: true
@@ -25,6 +30,10 @@ const questionSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     },
+    approved : {
+      type : Boolean,
+      default : false 
+  }
     
     
   })
