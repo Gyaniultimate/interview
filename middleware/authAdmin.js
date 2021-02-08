@@ -12,7 +12,7 @@ const isAdmin = (req, res) => {
                 check = true;
             }
         })
-        if (a == true) {
+        if (check== true) {
             return true;
         }
         
