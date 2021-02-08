@@ -1,0 +1,82 @@
+<%- include('partials/header'); -%>
+
+
+
+  
+  <div class = "content">
+  <form action="/saveBlog">
+  <h2>Add a Blog</h2>
+  <label for="title">title</label>
+  <input type="text" name="title" required />
+  <div class="title error"></div>
+  <label for="company" style="margin-top: 0.3cm;">Company</label>
+  <select name="company" id="company" >
+    <% if (companies.length > 0) { %>
+      <% companies.forEach((company) =>  { %>
+        <option value = "<%= company.title %>"><%= company.title %></option>
+      <% }) %>
+      <% } %>
+
+  </select>
+
+  <label for="url"  style="margin-top: 0.5cm;">Blog Text</label>
+
+  <input type="text" name="url" required />
+  <div class="url error"></div>
+
+  <label for="author"  style="margin-top: 0.5cm;">Author</label>
+
+  <input type="text" name="author" required />
+  <div class="author error"></div>
+
+  <button class="button" style="margin-top: 0.7cm;">Save</button>
+  
+</form>
+</div>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector('form');
+  const titleError = document.querySelector('.title.error');
+  const urlError = document.querySelector('.url.error');
+  const authorError = document.querySelector('.author.error');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // reset errors
+    titleError.textContent = '';
+    urlError.textContent = '';
+    authorError.textContent = '';
+
+    // get values
+    const title = form.title.value;
+    const url = form.url.value;
+    const company = form.company.value;
+    const author = form.author.value;
+    try {
+      const res = await fetch('/form_blog', { 
+        method: 'POST', 
+        body: JSON.stringify({ title, company, url,author}),
+        headers: {'Content-Type': 'application/json'}
+      });
+      console.log("aaaaaa      ");
+      const data = await res.json();
+      console.log("baaaaa      ");
+      console.log(data);
+      if (data.errors) {
+        titleError.textContent = data.errors.email;
+        urlError.textContent = data.errors.password;
+        authorError.textContent = data.errors.password;
+      }
+      else
+        {
+          location.replace("/")
+        }
+
+    }
+    catch (err) {
+      console.log(err);
+    }
+  });
+</script>

@@ -28,12 +28,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: FlexStart - v1.0.0
-  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+ 
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
@@ -49,8 +44,8 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active " href="#header">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto active " href="form">Add a question</a></li>
+          <li><a class="nav-link scrollto" href="form_blog">Add an experience</a></li>
           
           
         </ul>
@@ -66,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Hi Gyanendra Prakash</h1>
+          <h1 data-aos="fade-up">Welcome, <%= user.email %></h1>
           <h2 data-aos="fade-up" data-aos-delay="400">Begin your preparation!</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
@@ -107,7 +102,7 @@
               <img src="assets/img/logo.png" alt="">
               <span>Interview Preparation</span>
             </a>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p>What is not started today is never finished tomorrow</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -121,9 +116,8 @@
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+             
+              <li><i class="bi bi-chevron-right"></i> <a href="/logout">Log out</a></li>
             </ul>
           </div>
 
@@ -134,7 +128,8 @@
         &copy; Project <strong><span>Coding Club</span></strong>. 
       </div>
       <div class="credits">
-        
+        Made by <a href="https://www.linkedin.com/in/gyanendra-prakash-a65122168/">Gyanendra Prakash</a>
+        and <a href="https://www.linkedin.com/in/gitanjitmedhi/">Gitanjit Medhi</a>
         
       </div>
     </div>

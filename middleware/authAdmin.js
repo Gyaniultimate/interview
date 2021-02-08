@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-const adminEmails = ['gitanjit6@gmail.com', 'gitanjit.medhi@iitg.ac.in'];
+const adminEmails = ['gitanjit6@gmail.com', 'gitanjit.medhi@iitg.ac.in','gyanendraprakashjee@gmail.com'];
 
 const isAdmin = (req, res) => {
     const user = res.locals.user;
@@ -12,7 +12,7 @@ const isAdmin = (req, res) => {
                 check = true;
             }
         })
-        if (a == true) {
+        if (check == true) {
             return true;
         }
         
