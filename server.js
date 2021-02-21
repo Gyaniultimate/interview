@@ -11,7 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 
 const express = require('express')
 const mongoose = require('mongoose')
-
+let dirname = require("./dirname");
 
 
 const methodOverride = require('method-override')
@@ -41,9 +41,12 @@ const app = express()
 //const upload = multer({dest : 'public/uploads/'});
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      cb(null, 'assets/');
-    },
+ 
+ destination: (req, file, cb) => {
+    let dir = dirname.dirpath + "/assets/";
+    cb(null, dir);
+ },
+  
     filename: function(req, file, cb) {
       cb(null, new Date().toISOString() + file.originalname);
     }
