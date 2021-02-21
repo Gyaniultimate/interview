@@ -4,7 +4,7 @@
 
   
   <div class = "content">
-  <form action="/saveBlog" method="POST">
+  <form action="/form_blog" method="POST" enctype="multipart/form-data">
   <h2>Add a Blog</h2>
   <label for="title">title</label>
   <input type="text" name="title" required />
@@ -39,7 +39,7 @@
 
 <%- include('partials/footer'); -%>
 
-<script>
+{/* <script>
   const form = document.querySelector('form');
   const titleError = document.querySelector('.title.error');
   const urlError = document.querySelector('.url.error');
@@ -83,4 +83,4 @@
       console.log(err);
     }
   });
-</script>
+</script> */}
