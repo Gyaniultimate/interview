@@ -8,10 +8,13 @@ const blogSchema = new mongoose.Schema({
     ref : 'Company',
     required : true
     },
-
+    
     title: {
         type: String,
         required: true
+      },
+      image: {
+        type:String
       },
       url: {
           type: String,

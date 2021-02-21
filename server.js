@@ -27,12 +27,45 @@ const app = express()
 
  // middleware
  app.use('/assets',express.static('assets'));
+ app.use(express.static(__dirname +'./assets/'));
+
  //app.use(express.static('public'));
  app.use(express.json());
  app.use(cookieParser());
 
  //view engine 
  app.set('view engine', 'ejs')
+
+ //multer
+ const multer = require('multer');
+//const upload = multer({dest : 'public/uploads/'});
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, 'assets/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, new Date().toISOString() + file.originalname);
+    }
+  });
+  
+  const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
+  
+  const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+  });
+
 
 
 //db connection
@@ -70,7 +103,7 @@ app.get('/exp//',requireAuth, async (req, res) => {
 app.get('/form', requireAuth, authController.form_get);
 app.post('/form', requireAuth, authController.form_post);
 app.get('/form_blog',requireAuth,  authController.form_blog_get);
-app.post('/form_blog',requireAuth, authController.form_blog_post);
+app.post('/form_blog',requireAuth,upload.single('image'), authController.form_blog_post);
 
 
   app.use('/top/topques', topicquesRouter)

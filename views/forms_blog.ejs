@@ -4,7 +4,7 @@
 
   
   <div class = "content">
-  <form action="/saveBlog">
+  <form action="/saveBlog" method="POST">
   <h2>Add a Blog</h2>
   <label for="title">title</label>
   <input type="text" name="title" required />
@@ -28,6 +28,9 @@
 
   <input type="text" name="author" required />
   <div class="author error"></div>
+
+  <label for="image">Profile picture</label>
+  <input type="file" name="image" required />
 
   <button class="button" style="margin-top: 0.7cm;">Save</button>
   
@@ -54,10 +57,11 @@
     const url = form.url.value;
     const company = form.company.value;
     const author = form.author.value;
+    const image =form.image.value;
     try {
       const res = await fetch('/form_blog', { 
         method: 'POST', 
-        body: JSON.stringify({ title, company, url,author}),
+        body: JSON.stringify({ title, image,company, url,author}),
         headers: {'Content-Type': 'application/json'}
       });
       console.log("aaaaaa      ");
