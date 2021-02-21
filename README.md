@@ -54,4 +54,5 @@ Admin panel , admins can add , delete and modify models' data .
 
 1. Gitanjit Medhi
 2. Gyanendra Prakash
+cred. Sarthak
 
