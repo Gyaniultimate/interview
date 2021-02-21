@@ -67,7 +67,29 @@ const storage = multer.diskStorage({
       fileSize: 1024 * 1024 * 5
     },
     fileFilter: fileFilter
+  }).single("image");
+
+
+const multerMiddleware = (req, res, next)=>{
+ upload(req, res, (err) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(req.file);
+      if (req.file) {
+        console.log("thumbnail is uploaded successfully");
+        return next();
+      } else {
+        console.log("something went wrong when uploading the file");
+        return next();
+      }
+    }
   });
+
+
+}
+
 
 
 
@@ -106,7 +128,7 @@ app.get('/exp//',requireAuth, async (req, res) => {
 app.get('/form', requireAuth, authController.form_get);
 app.post('/form', requireAuth, authController.form_post);
 app.get('/form_blog',requireAuth,  authController.form_blog_get);
-app.post('/form_blog',requireAuth,upload.single('image'), authController.form_blog_post);
+app.post('/form_blog',requireAuth,multerMiddleware, authController.form_blog_post);
 
 
   app.use('/top/topques', topicquesRouter)
