@@ -81,7 +81,7 @@
           <article class="entry">
 
             <div class="entry-img">
-              <img src="<%= blog.image %>" alt="" class="img-fluid" />
+              <img src="../../assets/img/gyan.JPG" alt="" class="img-fluid" />
             </div>
 
             <h2 class="entry-title">
@@ -90,14 +90,15 @@
 
             <div class="entry-meta">
               <ul>
-                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">author: <%= blog.author %></a></li>
                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01"><%= blog.createdAt.toLocaleDateString() %></time></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                
               </ul>
             </div>
 
             <div class="entry-content">
               <p>
+                <hr>
                 <%= blog.url %>
               </p>
               <div class="read-more">
