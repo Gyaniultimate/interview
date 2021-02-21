@@ -135,13 +135,16 @@ module.exports.form_post = async (req, res) => {
 
 // form_blog post
 module.exports.form_blog_post = async (req, res) => {
-  const {company,title,url,image, author,linkToCompany,createdAt } = req.body;
+  const imagePath = "/assets/" + req.file.filename;
+  console.log("this is the image path",imagePath);
+  const {company,title,url, author,linkToCompany,createdAt } = req.body;
   const approved = isAdmin( req, res );
   var companyid;
   await Company.find({title : company}).then((result) => companyid = result[0]._id);
-  console.log("title : ", title,image, company, url,author,linkToCompany, approved);
+  console.log("title : ", title, company, url,author,linkToCompany, approved);
   try {
-    const blogss = await Blog.create({company : companyid,image, title, url,author,linkToCompany : company,createdAt, approved});
+    const blogss = await Blog.create({company : companyid,image:imagePath , title, url,author,linkToCompany : company,createdAt, approved});
+    return res.redirect('/');
     res.status(201).json({company : company._id});
   }
   catch(err) {

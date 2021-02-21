@@ -10,8 +10,7 @@ const companySchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    imgurl:{
-        type:String},
+    
     
     createdAt: {
       type: Date,
